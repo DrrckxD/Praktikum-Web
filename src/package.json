@@ -1,0 +1,20 @@
+{
+  "name": "flipplay-landing-page",
+  "version": "1.0.0",
+  "description": "FlipPlay Landing Page with Tailwind CLI",
+  "main": "index.html",
+  "scripts": {
+    "build:css": "tailwindcss -i ./css/input.css -o ./css/output.css --minify",
+    "dev:css": "tailwindcss -i ./css/input.css -o ./css/output.css --watch"
+  },
+  "keywords": [
+    "flipplay",
+    "tailwind",
+    "html5"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

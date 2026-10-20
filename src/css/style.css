@@ -1,0 +1,53 @@
+/* ==========================================================================
+   FlipPlay - Stylesheet (Netflix Red Edition)
+   Tugas Praktikum Pemrograman Web: HTML Semantik, Tempat Gambar & Tailwind CSS
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom Scrollbar Netflix Red */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f0f0f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #E50914;
+}
+
+/* Card Transitions & Hover */
+.feature-card {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(229, 9, 20, 0.4);
+    box-shadow: 0 12px 30px -10px rgba(229, 9, 20, 0.15);
+}
+
+.poster-card {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.poster-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 35px -10px rgba(229, 9, 20, 0.25);
+}
+
+.aspect-poster {
+    aspect-ratio: 2 / 3;
+}

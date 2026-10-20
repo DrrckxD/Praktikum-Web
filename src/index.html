@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FlipPlay - Platform hiburan digital generasi baru dengan tema Red, menyatukan streaming anime, drama Asia, manga, dan light novel dalam satu aplikasi web.">
+    <title>FlipPlay - Platform Hiburan Digital Generasi Baru | Red Edition</title>
+
+    <!-- Tailwind CLI Compiled CSS -->
+    <link rel="stylesheet" href="css/output.css">
+</head>
+<body class="bg-black text-zinc-100 font-sans antialiased flex flex-col min-h-screen selection:bg-red-600 selection:text-white">
+
+    <!-- ==========================================
+         1. NAVBAR (SEMANTIC: <header>, <nav>)
+         ========================================== -->
+    <header class="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-zinc-800/80 transition-all duration-300 shadow-lg shadow-black/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Logo -->
+                <a href="#beranda" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white font-black text-xl shadow-lg shadow-red-600/40 group-hover:scale-105 transition-transform duration-200">
+                        FP
+                    </div>
+                    <span class="text-2xl font-black tracking-tight text-white flex items-center">
+                        FLIP<span class="text-red-600">PLAY</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-zinc-300" aria-label="Navigasi Utama">
+                    <a href="#beranda" class="hover:text-red-500 transition-colors">Beranda</a>
+                    <a href="#layanan" class="hover:text-red-500 transition-colors">Layanan</a>
+                    <a href="#galeri" class="hover:text-red-500 transition-colors flex items-center gap-1.5">
+                        <span>Galeri & Tren</span>
+                        <span class="px-1.5 py-0.5 text-[10px] font-bold bg-red-600/20 text-red-500 border border-red-600/30 rounded uppercase">Populer</span>
+                    </a>
+                    <a href="#fitur" class="hover:text-red-500 transition-colors">Fitur Unggulan</a>
+                    <a href="#kontak" class="hover:text-red-500 transition-colors">Kontak</a>
+                </nav>
+
+                <!-- Action Button Desktop -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#galeri" class="text-zinc-300 hover:text-white text-sm font-semibold transition-colors">
+                        Jelajahi
+                    </a>
+                    <a href="#kontak" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all shadow-md shadow-red-600/30 hover:shadow-red-600/50 hover:scale-[1.02] active:scale-[0.98]">
+                        Coba Gratis
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-btn" type="button" class="text-zinc-300 hover:text-white p-2 rounded-lg bg-zinc-900 border border-zinc-800" aria-label="Buka Menu Navigasi">
+                        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-950/98 border-b border-zinc-800 px-4 pt-3 pb-6 space-y-3">
+            <a href="#beranda" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-zinc-200 hover:bg-zinc-900 hover:text-red-500">Beranda</a>
+            <a href="#layanan" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-zinc-200 hover:bg-zinc-900 hover:text-red-500">Layanan</a>
+            <a href="#galeri" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-zinc-200 hover:bg-zinc-900 hover:text-red-500">Galeri & Tren</a>
+            <a href="#fitur" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-zinc-200 hover:bg-zinc-900 hover:text-red-500">Fitur Unggulan</a>
+            <a href="#kontak" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-zinc-200 hover:bg-zinc-900 hover:text-red-500">Kontak</a>
+            <div class="pt-3 border-t border-zinc-800">
+                <a href="#kontak" class="mobile-link block text-center bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 rounded-lg text-sm shadow-lg shadow-red-600/30">
+                    Coba Gratis
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN CONTENT WRAPPER (SEMANTIC: <main>)
+         ========================================== -->
+    <main class="flex-grow">
+
+        <!-- ==========================================
+             2. HERO SECTION DENGAN SPOTLIGHT IMAGE (SEMANTIC: <section>, <figure>)
+             ========================================== -->
+        <section id="beranda" class="relative py-12 sm:py-20 bg-gradient-to-b from-zinc-950 via-black to-zinc-950 border-b border-zinc-800 overflow-hidden">
+            <!-- Background Glow Effect (Netflix Red) -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-red-600/10 blur-[120px] pointer-events-none rounded-full"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+                <!-- Hero Text Content -->
+                <div class="text-center max-w-4xl mx-auto mb-12">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-950/60 border border-red-800/80 text-red-400 text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                        Platform Hiburan Digital Terpadu
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-6">
+                        Streaming Video & Digital Reading dalam <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-600 to-rose-400">Satu Pengalaman Terpadu</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-zinc-300 leading-relaxed mb-8 max-w-2xl mx-auto">
+                        FlipPlay menyatukan anime, drama Asia, manga, dan light novel dengan satu web. Nikmati tontonan dan bacaan favorit tanpa berpindah aplikasi.
+                    </p>
+
+                    <!-- Dual Action Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="#kontak" class="w-full sm:w-auto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-red-600/40 hover:shadow-red-600/60 transition-all hover:scale-105">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <span>Mulai Akses Awal</span>
+                        </a>
+                        <a href="#galeri" class="w-full sm:w-auto flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 font-semibold px-8 py-3.5 rounded-xl border border-zinc-700/80 hover:border-red-600/50 transition-all">
+                            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                            </svg>
+                            <span>Jelajahi Galeri Konten</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Showcase Preview Card (Tempat Gambar Hero Spotlight Mockup) -->
+                <div class="max-w-5xl mx-auto bg-zinc-900/90 rounded-2xl border border-zinc-800 p-3 sm:p-5 shadow-2xl shadow-red-950/20 backdrop-blur-sm">
+                    <!-- Top Window Bar -->
+                    <div class="flex items-center justify-between px-3 py-2 mb-3 border-b border-zinc-800/80 text-xs text-zinc-400">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-red-600"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                            <span class="ml-2 font-mono text-[11px] text-zinc-400 hidden sm:inline">flipplay.app/preview</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-red-600/20 text-red-400 font-semibold text-[10px] border border-red-600/30">RED THEME</span>
+                            <span class="text-zinc-500">LIVE PREVIEW</span>
+                        </div>
+                    </div>
+
+                    <!-- Dual Showcase Display: Video Player & Manga Reader Mockups -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <!-- 1. Video Player Container -->
+                        <div class="group relative rounded-xl overflow-hidden bg-black border border-zinc-800 hover:border-red-600/60 transition-all">
+                            <figure class="relative aspect-video w-full overflow-hidden bg-zinc-950">
+                                <img src="../Image/Jujutsu_Kaisen.jpeg"
+                                     alt="Cuplikan Anime Simulcast 4K Ultra HD"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+
+                                <!-- Floating Overlay Controls -->
+                                <div class="absolute top-3 left-3 flex gap-2">
+                                    <span class="px-2.5 py-1 text-[11px] font-black uppercase tracking-wider bg-red-600 text-white rounded-md shadow-md">
+                                        🎬 Video Streaming
+                                    </span>
+                                    <span class="px-2 py-1 text-[10px] font-bold bg-black/70 backdrop-blur-md text-zinc-300 rounded border border-zinc-700">
+                                        4K HDR
+                                    </span>
+                                </div>
+
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-14 h-14 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-xl shadow-red-600/50 group-hover:scale-110 group-hover:bg-red-600 transition-all cursor-pointer">
+                                        <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <figcaption class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-zinc-300">
+                                    <div>
+                                        <p class="font-bold text-white text-sm drop-shadow">Jujutsu Kaisen</p>
+                                        <p class="text-[11px] text-zinc-400">Episode 12 (Simulcast Sub Indo)</p>
+                                    </div>
+                                    <span class="px-2 py-0.5 rounded bg-zinc-900/80 border border-zinc-700 text-red-400 font-semibold text-[11px]">
+                                        23:45 / 24:00
+                                    </span>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <!-- 2. Manga Reader Container -->
+                        <div class="group relative rounded-xl overflow-hidden bg-black border border-zinc-800 hover:border-red-600/60 transition-all">
+                            <figure class="relative aspect-video w-full overflow-hidden bg-zinc-950">
+                                <img src="Image/Solo_Leveling.jpeg"
+                                     alt="Tampilan Digital Manga Reader HD Full Color"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+
+                                <!-- Floating Overlay Controls -->
+                                <div class="absolute top-3 left-3 flex gap-2">
+                                    <span class="px-2.5 py-1 text-[11px] font-black uppercase tracking-wider bg-red-600 text-white rounded-md shadow-md">
+                                        📖 Digital Reading
+                                    </span>
+                                    <span class="px-2 py-1 text-[10px] font-bold bg-black/70 backdrop-blur-md text-zinc-300 rounded border border-zinc-700">
+                                        Full Color & HD
+                                    </span>
+                                </div>
+
+                                <figcaption class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-zinc-300">
+                                    <div>
+                                        <p class="font-bold text-white text-sm drop-shadow">Solo Leveling</p>
+                                        <p class="text-[11px] text-zinc-400">Chapter 184 • Halaman 24/48</p>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="w-16 h-1.5 bg-zinc-800 rounded-full overflow-hidden inline-block">
+                                            <span class="block h-full bg-red-600 w-1/2 rounded-full"></span>
+                                        </span>
+                                        <span class="text-[10px] text-red-400 font-bold ml-1">50%</span>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             3. CONTENT SECTION: LAYANAN UTAMA (SEMANTIC: <section>, <article>, <figure>)
+             ========================================== -->
+        <section id="layanan" class="py-16 sm:py-24 bg-zinc-950 border-b border-zinc-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <h2 class="text-xs sm:text-sm font-bold uppercase tracking-widest text-red-500 mb-2">Katalog Konten & Fitur</h2>
+                    <p class="text-2xl sm:text-4xl font-extrabold text-white">4 Layanan Hiburan Terpadu</p>
+                    <p class="text-sm sm:text-base text-zinc-400 mt-3">
+                        Tempat gambar dan konten interaktif yang dirancang dengan nuansa Red untuk kenyamanan streaming dan membaca Anda.
+                    </p>
+                </div>
+
+                <!-- 4 Services Cards Grid dengan Tempat Gambar Khusus -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <!-- 1. Anime Streaming -->
+                    <article class="feature-card group bg-zinc-900/90 rounded-2xl border border-zinc-800 p-4 flex flex-col justify-between hover:border-red-600/60 shadow-lg">
+                        <div>
+                            <!-- Tempat Gambar Layanan 1 -->
+                            <figure class="relative aspect-video w-full rounded-xl overflow-hidden mb-4 bg-zinc-950 border border-zinc-800">
+                                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80"
+                                     alt="Layanan Anime Streaming FlipPlay"
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
+                                <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
+                                    Simulcast
+                                </span>
+                                <span class="absolute bottom-2 right-2 text-xs font-bold bg-black/80 px-2 py-0.5 rounded text-red-400 border border-zinc-700">
+                                    4K UHD
+                                </span>
+                            </figure>
+
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-600"></span>
+                                <h3 class="text-lg font-bold text-white group-hover:text-red-400 transition-colors">Anime Streaming</h3>
+                            </div>
+                            <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-4">
+                                Ribuan judul anime populer dan rilisan on-going simulcast langsung dari Jepang dengan subtitle resmi Bahasa Indonesia.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-zinc-800 flex items-center justify-between text-xs">
+                            <span class="font-semibold text-red-400">✓ Audio Jernih & 60 FPS</span>
+                            <span class="text-zinc-500">Video</span>
+                        </div>
+                    </article>
+
+                    <!-- 2. Manga Reader -->
+                    <article class="feature-card group bg-zinc-900/90 rounded-2xl border border-zinc-800 p-4 flex flex-col justify-between hover:border-red-600/60 shadow-lg">
+                        <div>
+                            <!-- Tempat Gambar Layanan 2 -->
+                            <figure class="relative aspect-video w-full rounded-xl overflow-hidden mb-4 bg-zinc-950 border border-zinc-800">
+                                <img src="https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80"
+                                     alt="Layanan Manga Reader FlipPlay"
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
+                                <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
+                                    Webtoon
+                                </span>
+                                <span class="absolute bottom-2 right-2 text-xs font-bold bg-black/80 px-2 py-0.5 rounded text-red-400 border border-zinc-700">
+                                    Full Color
+                                </span>
+                            </figure>
+
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-600"></span>
+                                <h3 class="text-lg font-bold text-white group-hover:text-red-400 transition-colors">Manga Reader</h3>
+                            </div>
+                            <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-4">
+                                Pengalaman membaca manga, manhwa, dan komik webtoon berwarna dengan navigasi scroll halus serta fitur penanda buku otomatis.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-zinc-800 flex items-center justify-between text-xs">
+                            <span class="font-semibold text-red-400">✓ Mode Scroll Vertikal</span>
+                            <span class="text-zinc-500">Manga</span>
+                        </div>
+                    </article>
+
+                    <!-- 3. Asian Drama -->
+                    <article class="feature-card group bg-zinc-900/90 rounded-2xl border border-zinc-800 p-4 flex flex-col justify-between hover:border-red-600/60 shadow-lg">
+                        <div>
+                            <!-- Tempat Gambar Layanan 3 -->
+                            <figure class="relative aspect-video w-full rounded-xl overflow-hidden mb-4 bg-zinc-950 border border-zinc-800">
+                                <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=600&q=80"
+                                     alt="Layanan Asian Drama FlipPlay"
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
+                                <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
+                                    Drama
+                                </span>
+                                <span class="absolute bottom-2 right-2 text-xs font-bold bg-black/80 px-2 py-0.5 rounded text-red-400 border border-zinc-700">
+                                    Sub Indo
+                                </span>
+                            </figure>
+
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-600"></span>
+                                <h3 class="text-lg font-bold text-white group-hover:text-red-400 transition-colors">Asian Drama</h3>
+                            </div>
+                            <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-4">
+                                Serial drama Korea (K-Drama), drama Jepang (J-Dorama), dan drama Mandarin paling hits dengan pembaruan episode setiap hari.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-zinc-800 flex items-center justify-between text-xs">
+                            <span class="font-semibold text-red-400">✓ Unduh & Tonton Offline</span>
+                            <span class="text-zinc-500">Serial</span>
+                        </div>
+                    </article>
+
+                    <!-- 4. Light Novel -->
+                    <article class="feature-card group bg-zinc-900/90 rounded-2xl border border-zinc-800 p-4 flex flex-col justify-between hover:border-red-600/60 shadow-lg">
+                        <div>
+                            <!-- Tempat Gambar Layanan 4 -->
+                            <figure class="relative aspect-video w-full rounded-xl overflow-hidden mb-4 bg-zinc-950 border border-zinc-800">
+                                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80"
+                                     alt="Layanan Light Novel FlipPlay"
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
+                                <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
+                                    Novel
+                                </span>
+                                <span class="absolute bottom-2 right-2 text-xs font-bold bg-black/80 px-2 py-0.5 rounded text-red-400 border border-zinc-700">
+                                    Ilustrasi HD
+                                </span>
+                            </figure>
+
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-600"></span>
+                                <h3 class="text-lg font-bold text-white group-hover:text-red-400 transition-colors">Light Novel</h3>
+                            </div>
+                            <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-4">
+                                Koleksi novel terjemahan resmi berlisensi dengan tipografi yang nyaman di mata dan ilustrasi resolusi tinggi.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-zinc-800 flex items-center justify-between text-xs">
+                            <span class="font-semibold text-red-400">✓ Mode Dark & Sepia</span>
+                            <span class="text-zinc-500">E-Book</span>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             4. GALERI & TAYANGAN POPULER (SEMANTIC: <section>, <figure>, <figcaption>)
+             TEMPAT GAMBAR POSTER / KONTEN STYLE
+             ========================================== -->
+        <section id="galeri" class="py-16 sm:py-24 bg-black border-b border-zinc-800 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section Header & Filter Controls -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/60 border border-red-800/80 text-red-400 text-xs font-bold uppercase tracking-wider mb-2">
+                            🔥 Galeri Unggulan
+                        </div>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Tayangan & Komik Populer Minggu Ini</h2>
+                        <p class="text-sm text-zinc-400 mt-2 max-w-xl">
+                            Eksplorasi poster dan sampul karya digital beresolusi tinggi dengan peringkat tertinggi di FlipPlay.
+                        </p>
+                    </div>
+
+                    <!-- Category Filter Tabs (Interactive) -->
+                    <div class="flex flex-wrap gap-2 text-xs font-bold" id="gallery-filter-container">
+                        <button class="gallery-filter-btn active px-4 py-2 rounded-lg bg-red-600 text-white shadow-md shadow-red-600/30 transition-all cursor-pointer" data-filter="all">
+                            Semua
+                        </button>
+                        <button class="gallery-filter-btn px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 transition-all cursor-pointer" data-filter="anime">
+                            Anime
+                        </button>
+                        <button class="gallery-filter-btn px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 transition-all cursor-pointer" data-filter="manga">
+                            Manga
+                        </button>
+                        <button class="gallery-filter-btn px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 transition-all cursor-pointer" data-filter="drama">
+                            Drama Asia
+                        </button>
+                        <button class="gallery-filter-btn px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 transition-all cursor-pointer" data-filter="novel">
+                            Light Novel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Posters Grid (Tempat Gambar Poster Berformat 2:3) -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6" id="gallery-grid">
+
+                    <!-- Poster Card 1 (Anime) -->
+                    <div class="poster-card group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-600/70" data-category="anime">
+                        <figure class="relative aspect-poster w-full overflow-hidden bg-zinc-950">
+                            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80"
+                                 alt="Poster Demon Blade: Final Arc"
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+
+                            <!-- Top Badges -->
+                            <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
+                                TOP 1
+                            </span>
+                            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-black/80 text-amber-400 rounded border border-amber-500/30">
+                                ⭐ 9.9
+                            </span>
+
+                            <!-- Hover Action Overlay -->
+                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-3 text-center">
+                                <button class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/50 hover:scale-110 transition-transform" aria-label="Putar Anime">
+                                    <svg class="w-5 h-5 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
+                                <span class="text-xs font-bold text-white">Tonton Sekarang</span>
+                            </div>
+
+                            <figcaption class="absolute bottom-2.5 left-2.5 right-2.5">
+                                <span class="text-[10px] uppercase font-bold text-red-400">Anime • 4K</span>
+                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-1">Blade of Infinity</h4>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <!-- Poster Card 2 (Manga) -->
+                    <div class="poster-card group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-600/70" data-category="manga">
+                        <figure class="relative aspect-poster w-full overflow-hidden bg-zinc-950">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80"
+                                 alt="Poster Shadow Sovereign Rebirth"
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+
+                            <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
+                                NEW
+                            </span>
+                            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-black/80 text-amber-400 rounded border border-amber-500/30">
+                                ⭐ 9.8
+                            </span>
+
+                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-3 text-center">
+                                <button class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/50 hover:scale-110 transition-transform" aria-label="Baca Manga">
+                                    <svg class="w-5 h-5 fill-none stroke-currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                </button>
+                                <span class="text-xs font-bold text-white">Baca Chapter 1</span>
+                            </div>
+
+                            <figcaption class="absolute bottom-2.5 left-2.5 right-2.5">
+                                <span class="text-[10px] uppercase font-bold text-red-400">Manga • Color</span>
+                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-1">Shadow Monarch</h4>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <!-- Poster Card 3 (Drama) -->
+                    <div class="poster-card group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-600/70" data-category="drama">
+                        <figure class="relative aspect-poster w-full overflow-hidden bg-zinc-950">
+                            <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80"
+                                 alt="Poster Queen of Hearts K-Drama"
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+
+                            <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
+                                TREND
+                            </span>
+                            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-black/80 text-amber-400 rounded border border-amber-500/30">
+                                ⭐ 9.7
+                            </span>
+
+                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-3 text-center">
+                                <button class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/50 hover:scale-110 transition-transform" aria-label="Putar Drama">
+                                    <svg class="w-5 h-5 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
+                                <span class="text-xs font-bold text-white">Tonton Episode 1</span>
+                            </div>
+
+                            <figcaption class="absolute bottom-2.5 left-2.5 right-2.5">
+                                <span class="text-[10px] uppercase font-bold text-red-400">Drama • 16 Eps</span>
+                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-1">Seoul Moonlight</h4>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <!-- Poster Card 4 (Light Novel) -->
+                    <div class="poster-card group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-600/70" data-category="novel">
+                        <figure class="relative aspect-poster w-full overflow-hidden bg-zinc-950">
+                            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80"
+                                 alt="Poster Light Novel Overlord of Realm"
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+
+                            <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-zinc-800 text-zinc-300 border border-zinc-700 rounded uppercase">
+                                VOL. 08
+                            </span>
+                            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-black/80 text-amber-400 rounded border border-amber-500/30">
+                                ⭐ 9.6
+                            </span>
+
+                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-3 text-center">
+                                <button class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/50 hover:scale-110 transition-transform" aria-label="Baca Novel">
+                                    <svg class="w-5 h-5 fill-none stroke-currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                </button>
+                                <span class="text-xs font-bold text-white">Baca E-Book</span>
+                            </div>
+
+                            <figcaption class="absolute bottom-2.5 left-2.5 right-2.5">
+                                <span class="text-[10px] uppercase font-bold text-red-400">Novel • Isekai</span>
+                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-1">Arcana Emissary</h4>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <!-- Poster Card 5 (Anime) -->
+                    <div class="poster-card group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-600/70" data-category="anime">
+                        <figure class="relative aspect-poster w-full overflow-hidden bg-zinc-950">
+                            <img src="Image/Jujutsu_Kaisen.jpeg"
+                                 alt="Poster Jujutsu Kaisen Shibuya"
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+
+                            <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
+                                HOT
+                            </span>
+                            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-black/80 text-amber-400 rounded border border-amber-500/30">
+                                ⭐ 9.8
+                            </span>
+
+                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-3 text-center">
+                                <button class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/50 hover:scale-110 transition-transform" aria-label="Putar Anime">
+                                    <svg class="w-5 h-5 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
+                                <span class="text-xs font-bold text-white">Tonton Trailer</span>
+                            </div>
+
+                            <figcaption class="absolute bottom-2.5 left-2.5 right-2.5">
+                                <span class="text-[10px] uppercase font-bold text-red-400">Anime • Action</span>
+                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-1">Jujutsu Kaisen</h4>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <!-- Poster Card 6 (Manga) -->
+                    <div class="poster-card group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-600/70" data-category="manga">
+                        <figure class="relative aspect-poster w-full overflow-hidden bg-zinc-950">
+                            <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80"
+                                 alt="Poster Omniscient Reader Viewpoint"
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+
+                            <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
+                                POPULER
+                            </span>
+                            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-black/80 text-amber-400 rounded border border-amber-500/30">
+                                ⭐ 9.9
+                            </span>
+
+                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-3 text-center">
+                                <button class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/50 hover:scale-110 transition-transform" aria-label="Baca Komik">
+                                    <svg class="w-5 h-5 fill-none stroke-currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                </button>
+                                <span class="text-xs font-bold text-white">Baca Chapter 210</span>
+                            </div>
+
+                            <figcaption class="absolute bottom-2.5 left-2.5 right-2.5">
+                                <span class="text-[10px] uppercase font-bold text-red-400">Manga • Sci-Fi</span>
+                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-1">Omniscient World</h4>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             5. CONTENT SECTION: FITUR UNGGULAN (SEMANTIC: <section>)
+             ========================================== -->
+        <section id="fitur" class="py-16 sm:py-24 bg-zinc-950 border-b border-zinc-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <h2 class="text-xs sm:text-sm font-bold uppercase tracking-widest text-red-500 mb-2">Keunggulan FlipPlay</h2>
+                    <p class="text-2xl sm:text-4xl font-extrabold text-white">Mengapa Memilih FlipPlay?</p>
+                    <p class="text-sm sm:text-base text-zinc-400 mt-3">
+                        Inovasi terdepan yang menghubungkan pengalaman menonton dan membaca secara langsung.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="feature-card bg-zinc-900/80 p-8 rounded-2xl border border-zinc-800 hover:border-red-600/60 shadow-lg relative group">
+                        <div class="w-14 h-14 bg-red-950/60 border border-red-800/80 rounded-2xl flex items-center justify-center text-red-500 text-2xl mb-6 shadow-inner group-hover:scale-110 transition-transform">
+                            🔄
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors">Seamless Switch</h3>
+                        <p class="text-sm text-zinc-300 leading-relaxed">
+                            Beralih dari tontonan anime ke chapter manga yang sesuai secara instan dengan satu klik tanpa perlu mencari chapter secara manual.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-card bg-zinc-900/80 p-8 rounded-2xl border border-zinc-800 hover:border-red-600/60 shadow-lg relative group">
+                        <div class="w-14 h-14 bg-red-950/60 border border-red-800/80 rounded-2xl flex items-center justify-center text-red-500 text-2xl mb-6 shadow-inner group-hover:scale-110 transition-transform">
+                            ☁️
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors">Multi-Device Sync</h3>
+                        <p class="text-sm text-zinc-300 leading-relaxed">
+                            Lanjutkan riwayat tontonan dan halaman bacaan terakhir Anda di berbagai perangkat (smartphone, tablet, Smart TV, atau PC).
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-card bg-zinc-900/80 p-8 rounded-2xl border border-zinc-800 hover:border-red-600/60 shadow-lg relative group">
+                        <div class="w-14 h-14 bg-red-950/60 border border-red-800/80 rounded-2xl flex items-center justify-center text-red-500 text-2xl mb-6 shadow-inner group-hover:scale-110 transition-transform">
+                            ⚡
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors">Streaming Bebas Iklan</h3>
+                        <p class="text-sm text-zinc-300 leading-relaxed">
+                            Server streaming lokal berkecepatan tinggi tanpa interupsi iklan yang mengganggu kenyamanan menonton dan membaca Anda.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             6. CONTACT FORM SECTION (SEMANTIC: <section>, <form>, <label>, <input>, <select>, <textarea>, <button>)
+             ========================================== -->
+        <section id="kontak" class="py-16 sm:py-24 bg-black relative overflow-hidden">
+            <!-- Glow background -->
+            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-72 bg-red-600/10 blur-[100px] pointer-events-none rounded-full"></div>
+
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
+
+                <div class="bg-zinc-900/90 p-8 sm:p-10 rounded-2xl border border-zinc-800 shadow-2xl backdrop-blur-md">
+                    <div class="text-center mb-8">
+                        <span class="inline-block py-1 px-3 rounded-full bg-red-950/80 text-red-400 text-xs font-bold mb-3 border border-red-800/80">
+                            FORMULIR AKSES AWAL
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Bergabung Bersama FlipPlay</h2>
+                        <p class="text-sm text-zinc-400 mt-2">
+                            Daftarkan akun email Anda untuk menikmati masa uji coba gratis dan update katalog tayangan terbaru.
+                        </p>
+                    </div>
+
+                    <!-- Semantic Form -->
+                    <form action="#" method="POST" class="space-y-5" onsubmit="event.preventDefault(); alert('Terima kasih! Pendaftaran akses awal FlipPlay berhasil dikirim.'); this.reset();">
+
+                        <!-- Name & Email Row -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="nama" class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                                    Nama Lengkap <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="nama" name="nama" required
+                                    class="w-full px-4 py-3 bg-zinc-950 border border-zinc-700 rounded-xl text-white text-sm focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-zinc-500"
+                                    placeholder="Contoh: Budi Santoso">
+                            </div>
+
+                            <div>
+                                <label for="email" class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                                    Alamat Email <span class="text-red-500">*</span>
+                                </label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-3 bg-zinc-950 border border-zinc-700 rounded-xl text-white text-sm focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-zinc-500"
+                                    placeholder="nama@email.com">
+                            </div>
+                        </div>
+
+                        <!-- Category Select -->
+                        <div>
+                            <label for="kategori" class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                                Layanan Favorit yang Paling Diminati <span class="text-red-500">*</span>
+                            </label>
+                            <select id="kategori" name="kategori" required
+                                class="w-full px-4 py-3 bg-zinc-950 border border-zinc-700 rounded-xl text-white text-sm focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition-all cursor-pointer">
+                                <option value="" disabled selected>Pilih layanan favorit Anda</option>
+                                <option value="anime">Anime Streaming (Simulcast 4K)</option>
+                                <option value="manga">Manga & Manhwa Reader (Full Color)</option>
+                                <option value="drama">Asian Drama & Movies (Sub Indo)</option>
+                                <option value="novel">Light Novel (Official Translation)</option>
+                                <option value="all">Semua Layanan (All-In-One Pass)</option>
+                            </select>
+                        </div>
+
+                        <!-- Message Textarea -->
+                        <div>
+                            <label for="pesan" class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                                Catatan / Saran Judul yang Ingin Ditambahkan <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="pesan" name="pesan" rows="4" required
+                                class="w-full px-4 py-3 bg-zinc-950 border border-zinc-700 rounded-xl text-white text-sm focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-zinc-500"
+                                placeholder="Tuliskan rekomendasi judul anime, manga, drama, atau novel favorit Anda..."></textarea>
+                        </div>
+
+                        <!-- Submit Button Red -->
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold py-3.5 px-6 rounded-xl transition-all shadow-lg shadow-red-600/40 hover:shadow-red-600/60 hover:scale-[1.01] active:scale-[0.99] text-sm sm:text-base flex items-center justify-center gap-2 cursor-pointer">
+                            <span>Kirim Pendaftaran Akses Awal</span>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================
+         7. FOOTER (SEMANTIC: <footer>)
+         ========================================== -->
+    <footer class="bg-black border-t border-zinc-800/80 py-12 text-zinc-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+                <!-- Logo & Brand -->
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center text-white font-black text-sm shadow-md shadow-red-600/30">
+                        FP
+                    </div>
+                    <span class="text-xl font-black text-white">FLIP<span class="text-red-600">PLAY</span></span>
+                </div>
+
+                <!-- Footer Navigation Links -->
+                <div class="flex flex-wrap justify-center gap-6 text-xs sm:text-sm font-medium">
+                    <a href="#beranda" class="hover:text-red-500 transition-colors">Beranda</a>
+                    <a href="#layanan" class="hover:text-red-500 transition-colors">Layanan</a>
+                    <a href="#galeri" class="hover:text-red-500 transition-colors">Galeri Konten</a>
+                    <a href="#fitur" class="hover:text-red-500 transition-colors">Fitur Unggulan</a>
+                    <a href="#kontak" class="hover:text-red-500 transition-colors">Kontak</a>
+                </div>
+
+                <!-- Copyright -->
+                <div class="text-xs text-zinc-500 text-center sm:text-right">
+                    &copy; 2026 FlipPlay. Praktikum Pemrograman Web.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts: Mobile Nav & Gallery Filter -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuIconOpen.classList.toggle('hidden');
+                menuIconClose.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIconOpen.classList.remove('hidden');
+                    menuIconClose.classList.add('hidden');
+                });
+            });
+        }
+
+        // Gallery Filter Tab Interactions
+        const filterButtons = document.querySelectorAll('.gallery-filter-btn');
+        const posterCards = document.querySelectorAll('#gallery-grid .poster-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active tab styles
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-red-600', 'text-white', 'shadow-md', 'shadow-red-600/30');
+                    btn.classList.add('bg-zinc-900', 'text-zinc-300');
+                });
+                button.classList.add('bg-red-600', 'text-white', 'shadow-md', 'shadow-red-600/30');
+                button.classList.remove('bg-zinc-900', 'text-zinc-300');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                posterCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filterValue === 'all' || category === filterValue) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

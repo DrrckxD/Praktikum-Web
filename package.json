@@ -1,0 +1,19 @@
+{
+  "name": "pemrograman-web",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css",
+    "dev": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css --watch"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "live-server": "^1.2.2",
+    "tailwindcss": "^4.3.3"
+  }
+}
