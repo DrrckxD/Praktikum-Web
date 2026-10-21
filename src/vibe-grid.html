@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FlipPlay - The Vibe Grid: Eksplorasi anime dan manga berdasarkan vibe dan aura Anda secara real-time.">
+    <title>The Vibe Grid - FlipPlay | Red Edition</title>
+
+    <!-- Tailwind CLI Compiled CSS -->
+    <link rel="stylesheet" href="css/output.css">
+</head>
+<body class="bg-black text-zinc-100 font-sans antialiased flex flex-col min-h-screen selection:bg-red-600 selection:text-white">
+
+    <!-- ==========================================
+         NAVBAR
+         ========================================== -->
+    <header class="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-zinc-800/80 shadow-lg shadow-black/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white font-black text-xl shadow-lg shadow-red-600/40 group-hover:scale-105 transition-transform duration-200">
+                        FP
+                    </div>
+                    <span class="text-2xl font-black tracking-tight text-white flex items-center">
+                        FLIP<span class="text-red-600">PLAY</span>
+                    </span>
+                </a>
+
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-zinc-300">
+                    <a href="index.html" class="hover:text-red-500 transition-colors">Beranda</a>
+                    <a href="vibe-grid.html" class="text-red-500 font-bold transition-colors">✨ The Vibe Grid</a>
+                    <a href="index.html#layanan" class="hover:text-red-500 transition-colors">Layanan</a>
+                    <a href="index.html#galeri" class="hover:text-red-500 transition-colors">Galeri</a>
+                    <a href="index.html#kontak" class="hover:text-red-500 transition-colors">Kontak</a>
+                </nav>
+
+                <!-- Back to Home -->
+                <div>
+                    <a href="index.html" class="px-4 py-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white rounded-xl border border-zinc-700 font-bold text-xs sm:text-sm transition-all shadow">
+                        &larr; Kembali ke Beranda
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN CONTENT: THE VIBE GRID
+         ========================================== -->
+    <main class="flex-grow">
+        <section class="py-16 sm:py-24 bg-zinc-950 border-b border-zinc-800/80 relative">
+            <!-- Glow accents -->
+            <div class="absolute top-1/4 left-0 w-96 h-96 bg-red-600/10 blur-[140px] pointer-events-none rounded-full"></div>
+            <div class="absolute bottom-1/4 right-0 w-96 h-96 bg-rose-600/10 blur-[140px] pointer-events-none rounded-full"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-950/60 border border-red-800/80 text-red-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                        Dedicated Vibe Discovery Page
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
+                        The <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-600 to-rose-400">Vibe Grid</span>
+                    </h1>
+                    <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
+                        Eksplorasi koleksi anime dan manga pilihan dari Jikan API secara real-time. Gunakan Unified Search atau filter berdasarkan Aura Anda!
+                    </p>
+                </div>
+
+                <!-- Controls: Search & Aura Discovery Buttons -->
+                <div class="bg-zinc-900/90 border border-zinc-800 rounded-2xl p-4 sm:p-6 mb-10 shadow-xl backdrop-blur-md">
+                    <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+                        
+                        <!-- Unified Search Input (Event: input) -->
+                        <div class="w-full lg:w-1/2 relative">
+                            <label for="vibe-search-input" class="sr-only">Cari judul media...</label>
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-zinc-400">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                </svg>
+                            </div>
+                            <input type="text" id="vibe-search-input"
+                                class="w-full pl-11 pr-4 py-3 bg-zinc-950 border border-zinc-700/80 rounded-xl text-white text-sm focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none transition-all placeholder:text-zinc-500 shadow-inner"
+                                placeholder="Cari judul anime atau manga (mis: Fullmetal Alchemist, Naruto, Berserk)...">
+                        </div>
+
+                        <!-- Aura-Based Discovery Buttons (Event: click, Array Method: filter) -->
+                        <div class="w-full lg:w-auto flex flex-wrap items-center gap-2 justify-center lg:justify-end">
+                            <span class="text-xs font-bold uppercase tracking-wider text-zinc-400 mr-1 hidden sm:inline">Aura:</span>
+                            <button type="button" data-aura="all" class="aura-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-red-600 text-white shadow-lg shadow-red-600/30 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                                🌟 Semua Vibe
+                            </button>
+                            <button type="button" data-aura="high-energy" class="aura-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-zinc-950 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                                ⚡ High Energy
+                            </button>
+                            <button type="button" data-aura="melancholy" class="aura-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-zinc-950 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                                🌧️ Melancholy
+                            </button>
+                            <button type="button" data-aura="binge-mode" class="aura-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-zinc-950 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                                🍿 Binge Mode
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="vibe-loading" class="hidden py-20 text-center">
+                    <div class="inline-block w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin mb-4"></div>
+                    <p class="text-zinc-400 font-semibold text-sm animate-pulse">Memuat Vibe Grid Anime & Manga dari Jikan API...</p>
+                </div>
+
+                <!-- Error Message State -->
+                <div id="vibe-error" class="hidden py-16 px-6 bg-red-950/30 border border-red-800/60 rounded-2xl text-center max-w-xl mx-auto">
+                    <svg class="w-12 h-12 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                    <h3 class="text-lg font-bold text-white mb-2">Gagal Memuat Data dari API</h3>
+                    <p id="vibe-error-text" class="text-sm text-zinc-300 mb-6">Terjadi kendala saat mengambil data dari Jikan API (kemungkinan rate limit atau koneksi). Sistem menggunakan data cadangan.</p>
+                    <button type="button" id="vibe-retry-btn" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-red-600/30 cursor-pointer">
+                        Coba Lagi
+                    </button>
+                </div>
+
+                <!-- Cards Grid Container (Rendered dynamically with template literals & array methods) -->
+                <div id="vibe-cards-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Cards injected here via JavaScript -->
+                </div>
+
+                <!-- Empty State (when search or filter returns nothing) -->
+                <div id="vibe-empty" class="hidden py-16 text-center">
+                    <svg class="w-12 h-12 text-zinc-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h3 class="text-base font-bold text-zinc-300 mb-1">Tidak Ada Media Ditemukan</h3>
+                    <p class="text-sm text-zinc-500">Coba kata kunci pencarian lain atau pilih kategori aura yang berbeda.</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer class="bg-zinc-950 border-t border-zinc-900 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+            <div class="flex items-center gap-2">
+                <span class="font-black text-white">FLIP<span class="text-red-600">PLAY</span></span>
+                <span>&copy; 2026. Praktikum Pemrograman Web.</span>
+            </div>
+            <div>
+                <a href="index.html" class="hover:text-white transition-colors">Kembali ke Beranda Utama</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modular JavaScript with Developer Guide Comments -->
+    <script src="js/vibe-grid.js"></script>
+</body>
+</html>

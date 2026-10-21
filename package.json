@@ -8,8 +8,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css",
-    "dev": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css --watch"
+    "build": "npm --prefix src run build:css",
+    "dev": "npm --prefix src run dev:css",
+    "start": "live-server src --port=3000"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",
