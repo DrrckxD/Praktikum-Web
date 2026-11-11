@@ -30,7 +30,7 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-zinc-300" aria-label="Navigasi Utama">
                     <a href="#beranda" class="hover:text-red-500 transition-colors">Beranda</a>
-                    <a href="#vibe-grid" class="hover:text-red-500 transition-colors text-red-500 font-bold flex items-center gap-1">✨ The Vibe Grid</a>
+                    <a href="#vibe-grid" class="hover:text-red-500 transition-colors text-red-500 font-bold flex items-center gap-1">The Vibe Grid</a>
                     <a href="#layanan" class="hover:text-red-500 transition-colors">Layanan</a>
                     <a href="#galeri" class="hover:text-red-500 transition-colors flex items-center gap-1.5">
                         <span>Galeri & Tren</span>
@@ -143,21 +143,20 @@
 
                     <!-- Dual Showcase Display: Video Player & Manga Reader Mockups -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                        <!-- 1. Video Player Container -->
+                        <!-- 1. Video Player Container (diisi anime teratas dari API) -->
                         <div class="group relative rounded-xl overflow-hidden bg-black border border-zinc-800 hover:border-red-600/60 transition-all">
                             <figure class="relative aspect-video w-full overflow-hidden bg-zinc-950">
-                                <img src="../Image/Jujutsu_Kaisen.jpeg"
-                                     alt="Cuplikan Anime Simulcast 4K Ultra HD"
-                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90">
+                                <img id="preview-anime-img" alt="Cuplikan anime teratas"
+                                     class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 brightness-90">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
 
                                 <!-- Floating Overlay Controls -->
                                 <div class="absolute top-3 left-3 flex gap-2">
                                     <span class="px-2.5 py-1 text-[11px] font-black uppercase tracking-wider bg-red-600 text-white rounded-md shadow-md">
-                                        🎬 Video Streaming
+                                        Video Streaming
                                     </span>
-                                    <span class="px-2 py-1 text-[10px] font-bold bg-black/70 backdrop-blur-md text-zinc-300 rounded border border-zinc-700">
-                                        4K HDR
+                                    <span id="preview-anime-type" class="px-2 py-1 text-[10px] font-bold bg-black/70 backdrop-blur-md text-zinc-300 rounded border border-zinc-700">
+                                        Anime
                                     </span>
                                 </div>
 
@@ -170,46 +169,42 @@
                                 </div>
 
                                 <figcaption class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-zinc-300">
-                                    <div>
-                                        <p class="font-bold text-white text-sm drop-shadow">Jujutsu Kaisen</p>
-                                        <p class="text-[11px] text-zinc-400">Episode 12 (Simulcast Sub Indo)</p>
+                                    <div class="min-w-0">
+                                        <p id="preview-anime-title" class="font-bold text-white text-sm drop-shadow truncate">Memuat...</p>
+                                        <p id="preview-anime-sub" class="text-[11px] text-zinc-400 truncate">&nbsp;</p>
                                     </div>
-                                    <span class="px-2 py-0.5 rounded bg-zinc-900/80 border border-zinc-700 text-red-400 font-semibold text-[11px]">
-                                        23:45 / 24:00
+                                    <span id="preview-anime-score" class="px-2 py-0.5 rounded bg-zinc-900/80 border border-zinc-700 text-red-400 font-semibold text-[11px]">
+                                        &nbsp;
                                     </span>
                                 </figcaption>
                             </figure>
                         </div>
 
-                        <!-- 2. Manga Reader Container -->
+                        <!-- 2. Manga Reader Container (diisi manga teratas dari API) -->
                         <div class="group relative rounded-xl overflow-hidden bg-black border border-zinc-800 hover:border-red-600/60 transition-all">
                             <figure class="relative aspect-video w-full overflow-hidden bg-zinc-950">
-                                <img src="Image/Solo_Leveling.jpeg"
-                                     alt="Tampilan Digital Manga Reader HD Full Color"
-                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90">
+                                <img id="preview-manga-img" alt="Sampul manga teratas"
+                                     class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 brightness-90">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
 
                                 <!-- Floating Overlay Controls -->
                                 <div class="absolute top-3 left-3 flex gap-2">
                                     <span class="px-2.5 py-1 text-[11px] font-black uppercase tracking-wider bg-red-600 text-white rounded-md shadow-md">
-                                        📖 Digital Reading
+                                        Digital Reading
                                     </span>
-                                    <span class="px-2 py-1 text-[10px] font-bold bg-black/70 backdrop-blur-md text-zinc-300 rounded border border-zinc-700">
-                                        Full Color & HD
+                                    <span id="preview-manga-type" class="px-2 py-1 text-[10px] font-bold bg-black/70 backdrop-blur-md text-zinc-300 rounded border border-zinc-700">
+                                        Manga
                                     </span>
                                 </div>
 
                                 <figcaption class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-zinc-300">
-                                    <div>
-                                        <p class="font-bold text-white text-sm drop-shadow">Solo Leveling</p>
-                                        <p class="text-[11px] text-zinc-400">Chapter 184 • Halaman 24/48</p>
+                                    <div class="min-w-0">
+                                        <p id="preview-manga-title" class="font-bold text-white text-sm drop-shadow truncate">Memuat...</p>
+                                        <p id="preview-manga-sub" class="text-[11px] text-zinc-400 truncate">&nbsp;</p>
                                     </div>
-                                    <div class="flex items-center gap-1">
-                                        <span class="w-16 h-1.5 bg-zinc-800 rounded-full overflow-hidden inline-block">
-                                            <span class="block h-full bg-red-600 w-1/2 rounded-full"></span>
-                                        </span>
-                                        <span class="text-[10px] text-red-400 font-bold ml-1">50%</span>
-                                    </div>
+                                    <span id="preview-manga-score" class="px-2 py-0.5 rounded bg-zinc-900/80 border border-zinc-700 text-red-400 font-semibold text-[11px]">
+                                        &nbsp;
+                                    </span>
                                 </figcaption>
                             </figure>
                         </div>
@@ -238,11 +233,11 @@
                         The <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-600 to-rose-400">Vibe Grid</span>
                     </h2>
                     <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
-                        Jelajahi koleksi media pilihan dari Jikan API secara real-time. Cari judul favorit Anda dengan Unified Search atau temukan berdasarkan Aura Anda!
+                        Jelajahi koleksi media pilihan dari Kitsu API secara real-time. Cari judul favorit Anda dengan Unified Search atau filter berdasarkan kategori: Anime, Manga, dan Drama!
                     </p>
                 </div>
 
-                <!-- Controls: Search & Aura Discovery Buttons -->
+                <!-- Controls: Search & Category Filter Buttons -->
                 <div class="bg-zinc-900/90 border border-zinc-800 rounded-2xl p-4 sm:p-6 mb-10 shadow-xl backdrop-blur-md">
                     <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
 
@@ -259,30 +254,36 @@
                                 placeholder="Cari judul anime, manga, atau drama (mis: Naruto, Bleach, Gintama)...">
                         </div>
 
-                        <!-- Aura-Based Discovery Buttons (Event: click, Array Method: filter) -->
+                        <!-- Category Filter Buttons (Event: click, Array Method: filter) -->
                         <div class="w-full lg:w-auto flex flex-wrap items-center gap-2 justify-center lg:justify-end">
-                            <span class="text-xs font-bold uppercase tracking-wider text-zinc-400 mr-1 hidden sm:inline">Aura:</span>
-                            <button type="button" data-aura="all" class="aura-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-red-600 text-white shadow-lg shadow-red-600/30 transition-all cursor-pointer hover:scale-105 active:scale-95">
-                                🌟 Semua Vibe
+                            <span class="text-xs font-bold uppercase tracking-wider text-zinc-400 mr-1 hidden sm:inline">Kategori:</span>
+                            <button type="button" data-category="all" class="aura-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-red-600 text-white shadow-lg shadow-red-600/30 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                                Semua
                             </button>
-                            <button type="button" data-aura="high-energy" class="aura-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-zinc-950 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 transition-all cursor-pointer hover:scale-105 active:scale-95">
-                                ⚡ High Energy
+                            <button type="button" data-category="Anime" class="aura-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-zinc-950 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                                Anime
                             </button>
-                            <button type="button" data-aura="melancholy" class="aura-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-zinc-950 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 transition-all cursor-pointer hover:scale-105 active:scale-95">
-                                🌧️ Melancholy
+                            <button type="button" data-category="Manga" class="aura-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-zinc-950 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                                Manga
                             </button>
-                            <button type="button" data-aura="binge-mode" class="aura-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-zinc-950 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 transition-all cursor-pointer hover:scale-105 active:scale-95">
-                                🍿 Binge Mode
+                            <button type="button" data-category="Drama" class="aura-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-zinc-950 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80 transition-all cursor-pointer hover:scale-105 active:scale-95">
+                                Drama
                             </button>
                         </div>
 
+                    </div>
+
+                    <!-- Genre Filter (chip dibangun dinamis dari data API sesuai kategori aktif) -->
+                    <div class="mt-6 flex flex-wrap items-center gap-2 justify-center lg:justify-end">
+                        <span class="text-xs font-bold uppercase tracking-wider text-zinc-400 mr-1 hidden sm:inline">Genre:</span>
+                        <div id="vibe-genre-container" class="contents"></div>
                     </div>
                 </div>
 
                 <!-- Loading State -->
                 <div id="vibe-loading" class="hidden py-20 text-center">
                     <div class="inline-block w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin mb-4"></div>
-                    <p class="text-zinc-400 font-semibold text-sm animate-pulse">Memuat Vibe Grid dari Jikan API...</p>
+                    <p class="text-zinc-400 font-semibold text-sm animate-pulse">Memuat Vibe Grid dari Kitsu API...</p>
                 </div>
 
                 <!-- Error Message State -->
@@ -291,7 +292,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                     </svg>
                     <h3 class="text-lg font-bold text-white mb-2">Gagal Memuat Data dari API</h3>
-                    <p id="vibe-error-text" class="text-sm text-zinc-300 mb-6">Terjadi kendala saat mengambil data dari Jikan API (kemungkinan rate limit atau koneksi). Silakan coba lagi.</p>
+                    <p id="vibe-error-text" class="text-sm text-zinc-300 mb-6">Terjadi kendala saat mengambil data dari Kitsu API (kemungkinan rate limit atau koneksi). Silakan coba lagi.</p>
                     <button type="button" id="vibe-retry-btn" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-red-600/30 cursor-pointer">
                         Coba Lagi
                     </button>
@@ -308,7 +309,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                     <h3 class="text-base font-bold text-zinc-300 mb-1">Tidak Ada Media Ditemukan</h3>
-                    <p class="text-sm text-zinc-500">Coba kata kunci pencarian lain atau pilih kategori aura yang berbeda.</p>
+                    <p class="text-sm text-zinc-500">Coba kata kunci pencarian lain atau pilih kategori yang berbeda.</p>
                 </div>
 
             </div>
@@ -492,193 +493,14 @@
                             Manga
                         </button>
                         <button class="gallery-filter-btn px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 transition-all cursor-pointer" data-filter="drama">
-                            Drama Asia
-                        </button>
-                        <button class="gallery-filter-btn px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 transition-all cursor-pointer" data-filter="novel">
-                            Light Novel
+                            Drama
                         </button>
                     </div>
                 </div>
 
-                <!-- Posters Grid (Tempat Gambar Poster Berformat 2:3) -->
+                <!-- Posters Grid (dirender dari API Kitsu & TVMaze oleh JavaScript) -->
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6" id="gallery-grid">
-
-                    <!-- Poster Card 1 (Anime) -->
-                    <div class="poster-card group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-600/70" data-category="anime">
-                        <figure class="relative aspect-poster w-full overflow-hidden bg-zinc-950">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9iqrV1UGUQtrxa7TeSuGSyjiYC7D7n8JcxzeV4-pvjw&s=10?auto=format&fit=crop&w=600&q=80"
-                                 alt="Poster Demon Blade: Final Arc"
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-
-                            <!-- Top Badges -->
-                            <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
-                                TOP 1
-                            </span>
-                            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-black/80 text-amber-400 rounded border border-amber-500/30">
-                                ⭐ 9.9
-                            </span>
-
-                            <!-- Hover Action Overlay -->
-                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-3 text-center">
-                                <button class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/50 hover:scale-110 transition-transform" aria-label="Putar Anime">
-                                    <svg class="w-5 h-5 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </button>
-                                <span class="text-xs font-bold text-white">Tonton Sekarang</span>
-                            </div>
-
-                            <figcaption class="absolute bottom-2.5 left-2.5 right-2.5">
-                                <span class="text-[10px] uppercase font-bold text-red-400">Anime • 4K</span>
-                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-1">Bleach</h4>
-                            </figcaption>
-                        </figure>
-                    </div>
-
-                    <!-- Poster Card 2 (Manga) -->
-                    <div class="poster-card group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-600/70" data-category="manga">
-                        <figure class="relative aspect-poster w-full overflow-hidden bg-zinc-950">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp4mYcnJlEgK0z8Ddto8D5FB6_ntMyRl5ymguP-usP2w&s=10?auto=format&fit=crop&w=600&q=80"
-                                 alt="Poster Shadow Sovereign Rebirth"
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-
-                            <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
-                                NEW
-                            </span>
-                            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-black/80 text-amber-400 rounded border border-amber-500/30">
-                                ⭐ 9.8
-                            </span>
-
-                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-3 text-center">
-                                <button class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/50 hover:scale-110 transition-transform" aria-label="Baca Manga">
-                                    <svg class="w-5 h-5 fill-none stroke-currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                                </button>
-                                <span class="text-xs font-bold text-white">Baca Chapter 1</span>
-                            </div>
-
-                            <figcaption class="absolute bottom-2.5 left-2.5 right-2.5">
-                                <span class="text-[10px] uppercase font-bold text-red-400">Manga • Color</span>
-                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-1">Tokyo Revenger</h4>
-                            </figcaption>
-                        </figure>
-                    </div>
-
-                    <!-- Poster Card 3 (Drama) -->
-                    <div class="poster-card group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-600/70" data-category="drama">
-                        <figure class="relative aspect-poster w-full overflow-hidden bg-zinc-950">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSj1glXBx5443WFVN4_LIWUS0oiuHqo1_kdsW7jydGZow&s=10?auto=format&fit=crop&w=600&q=80"
-                                 alt="Poster Queen of Hearts K-Drama"
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-
-                            <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
-                                TREND
-                            </span>
-                            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-black/80 text-amber-400 rounded border border-amber-500/30">
-                                ⭐ 9.7
-                            </span>
-
-                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-3 text-center">
-                                <button class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/50 hover:scale-110 transition-transform" aria-label="Putar Drama">
-                                    <svg class="w-5 h-5 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </button>
-                                <span class="text-xs font-bold text-white">Tonton Episode 1</span>
-                            </div>
-
-                            <figcaption class="absolute bottom-2.5 left-2.5 right-2.5">
-                                <span class="text-[10px] uppercase font-bold text-red-400">Drama • 16 Eps</span>
-                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-1">The Trauma Code</h4>
-                            </figcaption>
-                        </figure>
-                    </div>
-
-                    <!-- Poster Card 4 (Light Novel) -->
-                    <div class="poster-card group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-600/70" data-category="novel">
-                        <figure class="relative aspect-poster w-full overflow-hidden bg-zinc-950">
-                            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80"
-                                 alt="Poster Light Novel Overlord of Realm"
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-
-                            <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-zinc-800 text-zinc-300 border border-zinc-700 rounded uppercase">
-                                VOL. 08
-                            </span>
-                            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-black/80 text-amber-400 rounded border border-amber-500/30">
-                                ⭐ 9.6
-                            </span>
-
-                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-3 text-center">
-                                <button class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/50 hover:scale-110 transition-transform" aria-label="Baca Novel">
-                                    <svg class="w-5 h-5 fill-none stroke-currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                                </button>
-                                <span class="text-xs font-bold text-white">Baca E-Book</span>
-                            </div>
-
-                            <figcaption class="absolute bottom-2.5 left-2.5 right-2.5">
-                                <span class="text-[10px] uppercase font-bold text-red-400">Novel • Isekai</span>
-                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-1">Arcana Emissary</h4>
-                            </figcaption>
-                        </figure>
-                    </div>
-
-                    <!-- Poster Card 5 (Anime) -->
-                    <div class="poster-card group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-600/70" data-category="anime">
-                        <figure class="relative aspect-poster w-full overflow-hidden bg-zinc-950">
-                            <img src="Image/Jujutsu_Kaisen.jpeg"
-                                 alt="Poster Jujutsu Kaisen Shibuya"
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-
-                            <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
-                                HOT
-                            </span>
-                            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-black/80 text-amber-400 rounded border border-amber-500/30">
-                                ⭐ 9.8
-                            </span>
-
-                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-3 text-center">
-                                <button class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/50 hover:scale-110 transition-transform" aria-label="Putar Anime">
-                                    <svg class="w-5 h-5 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </button>
-                                <span class="text-xs font-bold text-white">Tonton Trailer</span>
-                            </div>
-
-                            <figcaption class="absolute bottom-2.5 left-2.5 right-2.5">
-                                <span class="text-[10px] uppercase font-bold text-red-400">Anime • Action</span>
-                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-1">Jujutsu Kaisen</h4>
-                            </figcaption>
-                        </figure>
-                    </div>
-
-                    <!-- Poster Card 6 (Manga) -->
-                    <div class="poster-card group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-600/70" data-category="manga">
-                        <figure class="relative aspect-poster w-full overflow-hidden bg-zinc-950">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo0VV8sRvUeGFrp-GsZy-iaryXoivGajpS4DWnkHCkrg&s=10?auto=format&fit=crop&w=600&q=80"
-                                 alt="Poster Omniscient Reader Viewpoint"
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-
-                            <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">
-                                POPULER
-                            </span>
-                            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-black/80 text-amber-400 rounded border border-amber-500/30">
-                                ⭐ 9.9
-                            </span>
-
-                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-3 text-center">
-                                <button class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg shadow-red-600/50 hover:scale-110 transition-transform" aria-label="Baca Komik">
-                                    <svg class="w-5 h-5 fill-none stroke-currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                                </button>
-                                <span class="text-xs font-bold text-white">Baca Chapter 210</span>
-                            </div>
-
-                            <figcaption class="absolute bottom-2.5 left-2.5 right-2.5">
-                                <span class="text-[10px] uppercase font-bold text-red-400">Manga • Sci-Fi</span>
-                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-1">Omniscient World</h4>
-                            </figcaption>
-                        </figure>
-                    </div>
-
+                    <p class="col-span-full text-center text-sm text-zinc-500 py-10 animate-pulse">Memuat galeri dari API...</p>
                 </div>
 
             </div>
@@ -878,9 +700,64 @@
                 });
             }
 
-            // 2. Gallery Filter Tab Interactions
+            // 2. Galeri Unggulan & Live Preview (data dari API yang sama dengan Vibe Grid)
+            const galleryGrid = document.getElementById('gallery-grid');
             const filterButtons = document.querySelectorAll('.gallery-filter-btn');
-            const posterCards = document.querySelectorAll('#gallery-grid .poster-card');
+            let galleryFilter = 'all';
+
+            const byScoreDesc = (a, b) => (b.score || 0) - (a.score || 0);
+
+            function renderGallery() {
+                if (!galleryGrid) return;
+                if (allMediaData.length === 0) {
+                    galleryGrid.innerHTML = '<p class="col-span-full text-center text-sm text-zinc-500 py-10">Galeri tidak dapat dimuat dari API.</p>';
+                    return;
+                }
+                const badges = ['TOP 1', 'HOT', 'TREND', 'NEW'];
+                // 4 judul dengan skor tertinggi dari tiap kategori
+                const picks = ['Anime', 'Manga', 'Drama'].flatMap(cat =>
+                    allMediaData.filter(i => i.media_category === cat).sort(byScoreDesc).slice(0, 4)
+                );
+                galleryGrid.innerHTML = picks
+                    .filter(item => galleryFilter === 'all' || item.media_category.toLowerCase() === galleryFilter)
+                    .map(item => {
+                        const rank = picks.filter(p => p.media_category === item.media_category).indexOf(item);
+                        const genre = (item.genres && item.genres[0]) ? item.genres[0].name : item.media_category;
+                        return `
+                    <div class="poster-card group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-600/70">
+                        <figure class="relative aspect-poster w-full overflow-hidden bg-zinc-950">
+                            <img src="${item.images.jpg.image_url}" alt="Poster ${item.title}" loading="lazy"
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                            <span class="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-black bg-red-600 text-white rounded uppercase shadow">${badges[rank] || 'POPULER'}</span>
+                            <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold bg-black/80 text-amber-400 rounded border border-amber-500/30">${item.score || 'N/A'}</span>
+                            <figcaption class="absolute bottom-2.5 left-2.5 right-2.5">
+                                <span class="text-[10px] uppercase font-bold text-red-400">${item.media_category} • ${genre}</span>
+                                <h4 class="text-xs sm:text-sm font-bold text-white line-clamp-1">${item.title}</h4>
+                            </figcaption>
+                        </figure>
+                    </div>`;
+                    }).join('');
+            }
+
+            // Live Preview hero: anime & manga dengan skor tertinggi
+            function renderPreview() {
+                [['anime', 'Anime'], ['manga', 'Manga']].forEach(([key, cat]) => {
+                    const top = allMediaData.filter(i => i.media_category === cat).sort(byScoreDesc)[0];
+                    const img = document.getElementById(`preview-${key}-img`);
+                    const title = document.getElementById(`preview-${key}-title`);
+                    const sub = document.getElementById(`preview-${key}-sub`);
+                    const score = document.getElementById(`preview-${key}-score`);
+                    if (!top) {
+                        if (title) title.textContent = 'Data tidak tersedia';
+                        return;
+                    }
+                    if (img) { img.src = top.cover || top.images.jpg.image_url; img.alt = `Cuplikan ${top.title}`; }
+                    if (title) title.textContent = top.title;
+                    if (sub) sub.textContent = `${top.episodes} • ${(top.genres[0] && top.genres[0].name) || cat}`;
+                    if (score) score.textContent = `Skor ${top.score || 'N/A'}`;
+                });
+            }
 
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
@@ -891,16 +768,8 @@
                     button.classList.add('bg-red-600', 'text-white', 'shadow-md', 'shadow-red-600/30');
                     button.classList.remove('bg-zinc-900', 'text-zinc-300');
 
-                    const filterValue = button.getAttribute('data-filter');
-
-                    posterCards.forEach(card => {
-                        const category = card.getAttribute('data-category');
-                        if (filterValue === 'all' || category === filterValue) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
+                    galleryFilter = button.getAttribute('data-filter');
+                    renderGallery();
                 });
             });
 
@@ -914,7 +783,7 @@
                 });
             }
 
-            // 4. The Vibe Grid Logic (Jikan API Anime & Manga, Unified Search, Aura Discovery, Loading, Error, Template Literals, Array Methods)
+            // 4. The Vibe Grid Logic (Kitsu API Anime, Manga & Drama, Unified Search, Category Filter, Loading, Error, Template Literals, Array Methods)
             const searchInput = document.getElementById('vibe-search-input');
             const cardsContainer = document.getElementById('vibe-cards-container');
             const loadingEl = document.getElementById('vibe-loading');
@@ -922,101 +791,66 @@
             const emptyEl = document.getElementById('vibe-empty');
             const retryBtn = document.getElementById('vibe-retry-btn');
             const auraBtns = document.querySelectorAll('.aura-btn');
+            const genreContainer = document.getElementById('vibe-genre-container');
 
             let allMediaData = [];
             let currentSearchQuery = '';
-            let currentAura = 'all';
+            let currentCategory = 'all';
+            let currentGenre = 'all';
 
-            const fallbackData = [
-                {
-                    mal_id: 1,
-                    title: "Cowboy Bebop",
-                    media_category: "Anime",
-                    images: { jpg: { image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnlyoAp9j04kSvRcgkZj24Zb4aqG9WdVL0rNiGbegZXQ&s=10" } },
-                    score: 8.75,
-                    episodes: 26,
-                    type: "TV",
-                    genres: [{ name: "Action" }, { name: "Sci-Fi" }, { name: "Drama" }],
-                    synopsis: "In the year 2071, humanity has colonized several of the planets and moons of the solar system..."
-                },
-                {
-                    mal_id: 25,
-                    title: "Fullmetal Alchemist",
-                    media_category: "Manga",
-                    images: { jpg: { image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxld2HAKL9o-RMybKP300b6x-1gyRWmX0oFI0VMjBgRg&s=10" } },
-                    score: 9.12,
-                    episodes: "108 Ch",
-                    type: "Manga",
-                    genres: [{ name: "Action" }, { name: "Adventure" }, { name: "Drama" }, { name: "Fantasy" }],
-                    synopsis: "Alchemists are skilled individuals who study and manipulate matter—Edward and Alphonse Elric seek the Philosopher's Stone..."
-                },
-                {
-                    mal_id: 20,
-                    title: "Naruto",
-                    media_category: "Anime",
-                    images: { jpg: { image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrwu5tp5VXFscxrNB4qp2XuMBcv-0LiA8_CHtO8qHkEg&s=10" } },
-                    score: 8.03,
-                    episodes: 220,
-                    type: "TV",
-                    genres: [{ name: "Action" }, { name: "Adventure" }, { name: "Fantasy" }],
-                    synopsis: "Moments prior to Naruto Uzumaki's birth, a huge demon known as the Kyuubi attacked Konoha..."
-                },
-                {
-                    mal_id: 13,
-                    title: "Berserk",
-                    media_category: "Manga",
-                    images: { jpg: { image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqrehVzNhi122VA4xmax0h3tIvB8sq-9MJnjdkM72mxA&s=10" } },
-                    score: 9.47,
-                    episodes: "360+ Ch",
-                    type: "Manga",
-                    genres: [{ name: "Action" }, { name: "Adventure" }, { name: "Drama" }, { name: "Fantasy" }, { name: "Horror" }],
-                    synopsis: "Guts, a former mercenary now known as the 'Black Swordsman,' is out for revenge..."
-                },
-                {
-                    mal_id: 30276,
-                    title: "One Punch Man",
-                    media_category: "Anime",
-                    images: { jpg: { image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-2qGBX0kTjGl3xWEipiVLiOCzkX-B5a7o4o1RXSd2sg&s=10" } },
-                    score: 8.51,
-                    episodes: 12,
-                    type: "TV",
-                    genres: [{ name: "Action" }, { name: "Comedy" }, { name: "Sci-Fi" }],
-                    synopsis: "The seemingly ordinary Saitama has a rather unique hobby: being a hero for fun..."
-                },
-                {
-                    mal_id: 9253,
-                    title: "Steins;Gate",
-                    media_category: "Anime",
-                    images: { jpg: { image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy4ow5XuX-bsbL9Er4joLqJsXbbps4DvhY0J-75ASI2Q&s=10" } },
-                    score: 9.07,
-                    episodes: 24,
-                    type: "TV",
-                    genres: [{ name: "Drama" }, { name: "Sci-Fi" }, { name: "Suspense" }, { name: "Psychological" }],
-                    synopsis: "The self-proclaimed mad scientist Rintarou Okabe rents a room in Akihabara..."
-                },
-                {
-                    mal_id: 17,
-                    title: "Vagabond",
-                    media_category: "Manga",
-                    images: { jpg: { image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_87XpVxRKujEettmlDvjGfl7N2lod6-DgRVYhQpoiOw&s=10" } },
-                    score: 9.24,
-                    episodes: "327 Ch",
-                    type: "Manga",
-                    genres: [{ name: "Action" }, { name: "Adventure" }, { name: "Drama" }, { name: "Award Winning" }],
-                    synopsis: "In 16th-century Japan, Shinmen Takezou is a wild, rough young man..."
-                },
-                {
-                    mal_id: 1535,
-                    title: "Death Note",
-                    media_category: "Anime",
-                    images: { jpg: { image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5T1ByyD1mmrdghFQ17e8g_-Kkb-WXLed91OVY8BYVNg&s=10" } },
-                    score: 8.63,
-                    episodes: 37,
-                    type: "TV",
-                    genres: [{ name: "Suspense" }, { name: "Supernatural" }, { name: "Thriller" }, { name: "Mystery" }],
-                    synopsis: "A shinigami can kill any person as long as they write their victim's name in a notebook..."
-                }
-            ];
+            // Endpoint API (include=categories agar genre Kitsu ikut terambil untuk filter kategori)
+            const API_URLS = {
+                anime: 'https://kitsu.io/api/edge/anime?page[limit]=20&sort=-userCount&include=categories',
+                manga: 'https://kitsu.io/api/edge/manga?page[limit]=20&sort=-userCount&include=categories',
+                drama: 'https://api.tvmaze.com/shows'
+            };
+
+            // Normalisasi respons TVMaze: urut rating, ambil 20 teratas
+            function normalizeTvmaze(list) {
+                return (Array.isArray(list) ? list : [])
+                    .slice()
+                    .sort((a, b) => ((b.rating && b.rating.average) || 0) - ((a.rating && a.rating.average) || 0))
+                    .slice(0, 20)
+                    .map(show => ({
+                        id: show.id,
+                        title: show.name || 'Tanpa Judul',
+                        media_category: 'Drama',
+                        images: { jpg: { image_url: (show.image && (show.image.medium || show.image.original)) || '' } },
+                        score: (show.rating && show.rating.average) || null,
+                        episodes: show.runtime ? `${show.runtime} Min` : (show.type || 'Series'),
+                        type: show.type || 'Drama',
+                        genres: (show.genres || []).map(name => ({ name })),
+                        synopsis: (show.summary || '').replace(/<[^>]*>/g, '')
+                    }));
+            }
+
+            // Normalisasi respons Kitsu (JSON:API); rating 0-100 -> 0-10
+            function normalizeKitsu(json, category) {
+                const genreMap = {};
+                ((json && json.included) || []).forEach(inc => {
+                    if (inc.type === 'categories') genreMap[inc.id] = inc.attributes.title;
+                });
+                const isManga = category === 'Manga';
+                return ((json && json.data) || []).map(item => {
+                    const a = item.attributes || {};
+                    const relGenres = (item.relationships && item.relationships.categories && item.relationships.categories.data) || [];
+                    const rating = parseFloat(a.averageRating);
+                    const count = isManga ? a.chapterCount : a.episodeCount;
+                    const poster = a.posterImage || {};
+                    return {
+                        id: item.id,
+                        title: a.canonicalTitle || (a.titles && (a.titles.en || a.titles.en_jp)) || 'Tanpa Judul',
+                        media_category: category,
+                        images: { jpg: { image_url: poster.medium || poster.small || poster.original || '' } },
+                        cover: (a.coverImage && (a.coverImage.large || a.coverImage.original)) || '',
+                        score: isNaN(rating) ? null : Math.round(rating) / 10,
+                        episodes: count ? `${count} ${isManga ? 'Ch' : 'Ep'}` : (isManga ? 'Manga' : 'TV / Ongoing'),
+                        type: a.subtype || category,
+                        genres: relGenres.map(g => ({ name: genreMap[g.id] })).filter(g => g.name),
+                        synopsis: a.synopsis || ''
+                    };
+                });
+            }
 
             async function fetchVibeData() {
                 if (!loadingEl || !cardsContainer) return;
@@ -1026,43 +860,37 @@
                 if (emptyEl) emptyEl.classList.add('hidden');
 
                 try {
-                    const [animeRes, mangaRes] = await Promise.all([
-                        fetch('https://api.jikan.moe/v4/anime?limit=16'),
-                        fetch('https://api.jikan.moe/v4/manga?limit=16')
+                    const kitsuOpts = { headers: { Accept: 'application/vnd.api+json' } };
+                    const [animeRes, mangaRes, dramaRes] = await Promise.all([
+                        fetch(API_URLS.anime, kitsuOpts),
+                        fetch(API_URLS.manga, kitsuOpts),
+                        fetch(API_URLS.drama)
                     ]);
 
-                    let combined = [];
-                    if (animeRes.ok) {
-                        const animeJson = await animeRes.json();
-                        if (animeJson && animeJson.data) {
-                            combined = combined.concat(animeJson.data.map(item => ({
-                                ...item,
-                                media_category: 'Anime',
-                                episodes: item.episodes ? `${item.episodes} Ep` : 'TV / Ongoing'
-                            })));
-                        }
-                    }
-                    if (mangaRes.ok) {
-                        const mangaJson = await mangaRes.json();
-                        if (mangaJson && mangaJson.data) {
-                            combined = combined.concat(mangaJson.data.map(item => ({
-                                ...item,
-                                media_category: 'Manga',
-                                episodes: item.chapters ? `${item.chapters} Ch` : 'Manga'
-                            })));
-                        }
+                    if (!animeRes.ok || !mangaRes.ok || !dramaRes.ok) {
+                        throw new Error(`HTTP ${animeRes.status}/${mangaRes.status}/${dramaRes.status}`);
                     }
 
-                    if (combined.length > 0) {
-                        allMediaData = combined;
-                    } else {
-                        allMediaData = fallbackData;
-                    }
+                    const [animeJson, mangaJson, dramaJson] = await Promise.all([
+                        animeRes.json(), mangaRes.json(), dramaRes.json()
+                    ]);
+
+                    allMediaData = [
+                        ...normalizeKitsu(animeJson, 'Anime'),
+                        ...normalizeKitsu(mangaJson, 'Manga'),
+                        ...normalizeTvmaze(dramaJson)
+                    ];
+                    renderGenres();
+                    renderGallery();
+                    renderPreview();
                     renderVibeGrid();
                 } catch (err) {
-                    console.warn('API fetch error, using fallback anime & manga dataset:', err);
-                    allMediaData = fallbackData;
-                    renderVibeGrid();
+                    console.error('Gagal mengambil data API:', err);
+                    allMediaData = [];
+                    cardsContainer.innerHTML = '';
+                    if (errorEl) errorEl.classList.remove('hidden');
+                    renderGallery();
+                    renderPreview();
                 } finally {
                     if (loadingEl) loadingEl.classList.add('hidden');
                 }
@@ -1074,21 +902,11 @@
                 let filtered = allMediaData.filter(item => {
                     const matchesSearch = item.title.toLowerCase().includes(currentSearchQuery.toLowerCase());
 
-                    let matchesAura = true;
-                    const genreNames = item.genres ? item.genres.map(g => g.name.toLowerCase()) : [];
+                    const matchesCategory = currentCategory === 'all' || item.media_category === currentCategory;
 
-                    if (currentAura === 'high-energy') {
-                        // High Energy: Action, Adventure, Shounen, Sports, Sci-Fi, Fantasy or score >= 8.3
-                        matchesAura = genreNames.some(g => ['action', 'adventure', 'shounen', 'sports', 'sci-fi', 'fantasy'].includes(g)) || item.score >= 8.3;
-                    } else if (currentAura === 'melancholy') {
-                        // Melancholy: Drama, Psychological, Mystery, Romance, Supernatural, Suspense, Horror, Thriller
-                        matchesAura = genreNames.some(g => ['drama', 'psychological', 'mystery', 'romance', 'supernatural', 'suspense', 'horror', 'thriller'].includes(g));
-                    } else if (currentAura === 'binge-mode') {
-                        // Binge Mode: Long running, high episodes/chapters, or epic series
-                        matchesAura = (typeof item.episodes === 'number' && item.episodes >= 24) || item.media_category === 'Manga' || genreNames.includes('adventure') || genreNames.includes('fantasy');
-                    }
+                    const matchesGenre = currentGenre === 'all' || (item.genres || []).some(g => g.name === currentGenre);
 
-                    return matchesSearch && matchesAura;
+                    return matchesSearch && matchesCategory && matchesGenre;
                 });
 
                 if (filtered.length === 0) {
@@ -1109,7 +927,7 @@
                     const genresStr = (item.genres && item.genres.length > 0) ? item.genres.map(g => g.name).slice(0, 2).join(', ') : 'Hiburan';
                     const synopsis = item.synopsis ? item.synopsis.substring(0, 95) + '...' : 'Tidak ada sinopsis tersedia.';
 
-                    const badgeColor = mediaType === 'Manga' ? 'bg-purple-600/90' : 'bg-red-600/90';
+                    const badgeColor = mediaType === 'Manga' ? 'bg-purple-600/90' : (mediaType === 'Drama' ? 'bg-blue-600/90' : 'bg-red-600/90');
 
                     return `
                         <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-lg hover:border-red-600/60 hover:shadow-red-600/20 transition-all duration-300 flex flex-col group">
@@ -1158,6 +976,38 @@
                 }).join('');
             }
 
+            // Genre Filter: chip dibangun dari genre yang ada pada kategori aktif (maks. 6 genre terbanyak)
+            function renderGenres() {
+                if (!genreContainer) return;
+                const counts = {};
+                allMediaData
+                    .filter(item => currentCategory === 'all' || item.media_category === currentCategory)
+                    .forEach(item => (item.genres || []).forEach(g => { counts[g.name] = (counts[g.name] || 0) + 1; }));
+                const genres = Object.keys(counts)
+                    .sort((a, b) => counts[b] - counts[a] || a.localeCompare(b))
+                    .slice(0, 6);
+                if (currentGenre !== 'all' && !genres.includes(currentGenre)) currentGenre = 'all';
+
+                genreContainer.innerHTML = ['all', ...genres].map(g => {
+                    const active = g === currentGenre;
+                    const cls = active
+                        ? 'font-bold bg-red-600 text-white shadow-lg shadow-red-600/30'
+                        : 'font-semibold bg-zinc-950 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80';
+                    return `<button type="button" data-genre="${g}" class="genre-btn px-4 py-2 rounded-xl text-xs sm:text-sm transition-all cursor-pointer hover:scale-105 active:scale-95 ${cls}">${g === 'all' ? 'Semua' : g}</button>`;
+                }).join('');
+            }
+
+            // Event Handling: klik chip genre (event delegation)
+            if (genreContainer) {
+                genreContainer.addEventListener('click', (e) => {
+                    const btn = e.target.closest('.genre-btn');
+                    if (!btn) return;
+                    currentGenre = btn.getAttribute('data-genre');
+                    renderGenres();
+                    renderVibeGrid();
+                });
+            }
+
             // Event Handling 1: Unified Search Real-time Input
             if (searchInput) {
                 searchInput.addEventListener('input', (e) => {
@@ -1166,7 +1016,7 @@
                 });
             }
 
-            // Event Handling 2: Aura-Based Discovery Click Buttons
+            // Event Handling 2: Category Filter Click Buttons
             auraBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -1177,7 +1027,9 @@
                     btn.classList.remove('bg-zinc-950', 'text-zinc-300', 'font-semibold');
                     btn.classList.add('bg-red-600', 'text-white', 'shadow-lg', 'shadow-red-600/30', 'font-bold');
 
-                    currentAura = btn.getAttribute('data-aura');
+                    currentCategory = btn.getAttribute('data-category');
+                    currentGenre = 'all';
+                    renderGenres();
                     renderVibeGrid();
                 });
             });

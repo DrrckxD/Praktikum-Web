@@ -3,8 +3,8 @@
  * FLIPPLAY: THE VIBE GRID - DEVELOPER GUIDE & JAVASCRIPT LOGIC
  * ============================================================================
  * File: src/js/vibe-grid.js
- * Description: Mengelola pengambilan data dari Jikan Public API (Anime & Manga),
- * pencarian real-time (Unified Search), penyaringan berdasarkan Aura (Aura-Based Discovery),
+ * Description: Mengelola pengambilan data dari Kitsu API (Anime & Manga),
+ * pencarian real-time (Unified Search), penyaringan berdasarkan kategori (Anime, Manga, Drama),
  * serta render DOM dinamis menggunakan Template Literals dan Array Methods.
  * ============================================================================
  */
@@ -19,111 +19,76 @@ document.addEventListener('DOMContentLoaded', () => {
     const emptyEl = document.getElementById('vibe-empty');
     const retryBtn = document.getElementById('vibe-retry-btn');
     const auraBtns = document.querySelectorAll('.aura-btn');
+    const genreContainer = document.getElementById('vibe-genre-container');
 
     // --- 2. STATE MANAGEMENT ---
-    let allMediaData = [];     // Menyimpan seluruh data mentah dari API / Fallback
+    let allMediaData = [];     // Menyimpan seluruh data dari API
     let currentSearchQuery = ''; // Menyimpan kata kunci pencarian real-time
-    let currentAura = 'all';     // Menyimpan filter aura aktif ('all', 'high-energy', 'melancholy', 'binge-mode')
+    let currentCategory = 'all';     // Menyimpan kategori aktif ('all', 'Anime', 'Manga', 'Drama')
+    let currentGenre = 'all';    // Menyimpan genre aktif ('all' atau nama genre)
+
+    // Endpoint API (include=categories agar genre Kitsu ikut terambil untuk filter kategori)
+    const API_URLS = {
+        anime: 'https://kitsu.io/api/edge/anime?page[limit]=20&sort=-userCount&include=categories',
+        manga: 'https://kitsu.io/api/edge/manga?page[limit]=20&sort=-userCount&include=categories',
+        drama: 'https://api.tvmaze.com/shows'
+    };
 
     /**
-     * Fallback Dataset (Mock Data)
-     * Digunakan jika Jikan API mengalami rate limit (HTTP 429) atau gangguan jaringan.
-     * Mencakup Anime dan Manga dengan gambar cover yang akurat (termasuk Fullmetal Alchemist).
+     * Normalisasi respons TVMaze (array show) ke bentuk data yang dipakai render.
+     * TVMaze mengembalikan ratusan show, jadi diurutkan berdasarkan rating dan diambil 20 teratas.
      */
-    const fallbackData = [
-        {
-            mal_id: 5114,
-            title: "Fullmetal Alchemist: Brotherhood",
-            media_category: "Anime",
-            images: { jpg: { image_url: "https://cdn.myanimelist.net/images/anime/1208/94745.jpg" } },
-            score: 9.10,
-            episodes: 64,
-            type: "TV",
-            genres: [{ name: "Action" }, { name: "Adventure" }, { name: "Drama" }, { name: "Fantasy" }],
-            synopsis: "Setelah eksperimen alkimia yang berujung bencana di keluarga Elric, Edward dan Alphonse mencari Batu Bertuah..."
-        },
-        {
-            mal_id: 25,
-            title: "Fullmetal Alchemist (Manga Edition)",
-            media_category: "Manga",
-            images: { jpg: { image_url: "https://cdn.myanimelist.net/images/manga/3/243617.jpg" } },
-            score: 9.12,
-            episodes: "108 Ch",
-            type: "Manga",
-            genres: [{ name: "Action" }, { name: "Adventure" }, { name: "Drama" }, { name: "Fantasy" }],
-            synopsis: "Kisah epik dua bersaudara Elric dalam manga legendaris karya Hiromu Arakawa menjelajahi batas sains dan alkimia."
-        },
-        {
-            mal_id: 1,
-            title: "Cowboy Bebop",
-            media_category: "Anime",
-            images: { jpg: { image_url: "https://cdn.myanimelist.net/images/anime/4/19644.jpg" } },
-            score: 8.75,
-            episodes: 26,
-            type: "TV",
-            genres: [{ name: "Action" }, { name: "Sci-Fi" }, { name: "Drama" }],
-            synopsis: "Di tahun 2071, sekelompok pemburu hadiah menjelajahi tata surya menumpang pesawat Bebop..."
-        },
-        {
-            mal_id: 20,
-            title: "Naruto",
-            media_category: "Anime",
-            images: { jpg: { image_url: "https://cdn.myanimelist.net/images/anime/13/17405.jpg" } },
-            score: 8.03,
-            episodes: 220,
-            type: "TV",
-            genres: [{ name: "Action" }, { name: "Adventure" }, { name: "Fantasy" }],
-            synopsis: "Kisah ninja muda Uzumaki Naruto yang bertekad meraih pengakuan dan impian menjadi Hokage."
-        },
-        {
-            mal_id: 13,
-            title: "Berserk",
-            media_category: "Manga",
-            images: { jpg: { image_url: "https://cdn.myanimelist.net/images/manga/1/157897.jpg" } },
-            score: 9.47,
-            episodes: "360+ Ch",
-            type: "Manga",
-            genres: [{ name: "Action" }, { name: "Adventure" }, { name: "Drama" }, { name: "Fantasy" }, { name: "Horror" }],
-            synopsis: "Guts si Pendekar Hitam menjelajahi dunia gelap penuh pertarungan tak kenal ampun demi takdirnya."
-        },
-        {
-            mal_id: 30276,
-            title: "One Punch Man",
-            media_category: "Anime",
-            images: { jpg: { image_url: "https://cdn.myanimelist.net/images/anime/12/76049.jpg" } },
-            score: 8.51,
-            episodes: 12,
-            type: "TV",
-            genres: [{ name: "Action" }, { name: "Comedy" }, { name: "Sci-Fi" }],
-            synopsis: "Saitama adalah pahlawan yang bisa mengalahkan musuh apa pun hanya dengan satu pukulan."
-        },
-        {
-            mal_id: 9253,
-            title: "Steins;Gate",
-            media_category: "Anime",
-            images: { jpg: { image_url: "https://cdn.myanimelist.net/images/anime/5/73199.jpg" } },
-            score: 9.07,
-            episodes: 24,
-            type: "TV",
-            genres: [{ name: "Drama" }, { name: "Sci-Fi" }, { name: "Suspense" }, { name: "Psychological" }],
-            synopsis: "Ilmuwan gila Rintarou Okabe tak sengaja menemukan teknologi pengiriman pesan melintasi waktu."
-        },
-        {
-            mal_id: 1535,
-            title: "Death Note",
-            media_category: "Anime",
-            images: { jpg: { image_url: "https://cdn.myanimelist.net/images/anime/9/9453.jpg" } },
-            score: 8.63,
-            episodes: 37,
-            type: "TV",
-            genres: [{ name: "Suspense" }, { name: "Supernatural" }, { name: "Thriller" }, { name: "Mystery" }],
-            synopsis: "Light Yagami menemukan buku catatan kematian milik Shinigami dan mencoba menciptakan dunia tanpa kejahatan."
-        }
-    ];
+    function normalizeTvmaze(list) {
+        return (Array.isArray(list) ? list : [])
+            .slice()
+            .sort((a, b) => ((b.rating && b.rating.average) || 0) - ((a.rating && a.rating.average) || 0))
+            .slice(0, 20)
+            .map(show => ({
+                id: show.id,
+                title: show.name || 'Tanpa Judul',
+                media_category: 'Drama',
+                images: { jpg: { image_url: (show.image && (show.image.medium || show.image.original)) || '' } },
+                score: (show.rating && show.rating.average) || null,
+                episodes: show.runtime ? `${show.runtime} Min` : (show.type || 'Series'),
+                type: show.type || 'Drama',
+                genres: (show.genres || []).map(name => ({ name })),
+                synopsis: (show.summary || '').replace(/<[^>]*>/g, '')
+            }));
+    }
+
+    /**
+     * Normalisasi respons Kitsu (JSON:API) ke bentuk data yang dipakai render.
+     * Rating Kitsu 0-100 dikonversi ke skala 0-10.
+     */
+    function normalizeKitsu(json, category) {
+        const genreMap = {};
+        ((json && json.included) || []).forEach(inc => {
+            if (inc.type === 'categories') genreMap[inc.id] = inc.attributes.title;
+        });
+        const isManga = category === 'Manga';
+        return ((json && json.data) || []).map(item => {
+            const a = item.attributes || {};
+            const relGenres = (item.relationships && item.relationships.categories && item.relationships.categories.data) || [];
+            const rating = parseFloat(a.averageRating);
+            const count = isManga ? a.chapterCount : a.episodeCount;
+            const poster = a.posterImage || {};
+            return {
+                id: item.id,
+                title: a.canonicalTitle || (a.titles && (a.titles.en || a.titles.en_jp)) || 'Tanpa Judul',
+                media_category: category,
+                images: { jpg: { image_url: poster.medium || poster.small || poster.original || '' } },
+                score: isNaN(rating) ? null : Math.round(rating) / 10,
+                episodes: count ? `${count} ${isManga ? 'Ch' : 'Ep'}` : (isManga ? 'Manga' : 'TV / Ongoing'),
+                type: a.subtype || category,
+                genres: relGenres.map(g => ({ name: genreMap[g.id] })).filter(g => g.name),
+                synopsis: a.synopsis || ''
+            };
+        });
+    }
 
     /**
      * --- 3. FETCH API FUNCTION ---
-     * Mengambil data secara asinkron dari Jikan Public API (v4 anime & manga)
+     * Mengambil data secara asinkron dari Kitsu API (anime & manga)
      * Menggunakan Promise.all untuk mengambil data anime dan manga secara bersamaan.
      */
     async function fetchVibeData() {
@@ -136,51 +101,35 @@ document.addEventListener('DOMContentLoaded', () => {
         if (emptyEl) emptyEl.classList.add('hidden');
 
         try {
-            // Menggunakan Fetch API untuk mengambil data dari dua endpoint publik secara paralel
-            const [animeRes, mangaRes] = await Promise.all([
-                fetch('https://api.jikan.moe/v4/anime?limit=16'),
-                fetch('https://api.jikan.moe/v4/manga?limit=16')
+            // Fetch API: ambil tiga endpoint publik secara paralel
+            const kitsuOpts = { headers: { Accept: 'application/vnd.api+json' } };
+            const [animeRes, mangaRes, dramaRes] = await Promise.all([
+                fetch(API_URLS.anime, kitsuOpts),
+                fetch(API_URLS.manga, kitsuOpts),
+                fetch(API_URLS.drama)
             ]);
 
-            let combined = [];
-
-            if (animeRes.ok) {
-                const animeJson = await animeRes.json();
-                if (animeJson && animeJson.data) {
-                    // Array Method (.map): Transform data anime dari API
-                    combined = combined.concat(animeJson.data.map(item => ({
-                        ...item,
-                        media_category: 'Anime',
-                        episodes: item.episodes ? `${item.episodes} Ep` : 'TV / Ongoing'
-                    })));
-                }
+            if (!animeRes.ok || !mangaRes.ok || !dramaRes.ok) {
+                throw new Error(`HTTP ${animeRes.status}/${mangaRes.status}/${dramaRes.status}`);
             }
 
-            if (mangaRes.ok) {
-                const mangaJson = await mangaRes.json();
-                if (mangaJson && mangaJson.data) {
-                    // Array Method (.map): Transform data manga dari API
-                    combined = combined.concat(mangaJson.data.map(item => ({
-                        ...item,
-                        media_category: 'Manga',
-                        episodes: item.chapters ? `${item.chapters} Ch` : 'Manga'
-                    })));
-                }
-            }
+            const [animeJson, mangaJson, dramaJson] = await Promise.all([
+                animeRes.json(), mangaRes.json(), dramaRes.json()
+            ]);
 
-            // Jika data berhasil didapat, simpan ke state; jika kosong gunakan fallback
-            if (combined.length > 0) {
-                allMediaData = combined;
-            } else {
-                allMediaData = fallbackData;
-            }
+            allMediaData = [
+                ...normalizeKitsu(animeJson, 'Anime'),
+                ...normalizeKitsu(mangaJson, 'Manga'),
+                ...normalizeTvmaze(dramaJson)
+            ];
 
+            renderGenres();
             renderVibeGrid();
         } catch (err) {
-            console.warn('Jikan API error atau rate limit tercapai. Menggunakan fallback dataset lokal:', err);
-            // Error Handling: Jika fetch gagal, gunakan fallback data agar aplikasi tetap berfungsi sempurna
-            allMediaData = fallbackData;
-            renderVibeGrid();
+            console.error('Gagal mengambil data API:', err);
+            allMediaData = [];
+            cardsContainer.innerHTML = '';
+            if (errorEl) errorEl.classList.remove('hidden');
         } finally {
             // Sembunyikan loading state
             if (loadingEl) loadingEl.classList.add('hidden');
@@ -194,22 +143,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderVibeGrid() {
         if (!cardsContainer) return;
 
-        // Array Method (.filter): Memfilter data berdasarkan Unified Search query dan kategori Aura yang dipilih
+        // Array Method (.filter): Memfilter data berdasarkan Unified Search query dan kategori yang dipilih
         let filtered = allMediaData.filter(item => {
             const matchesSearch = item.title.toLowerCase().includes(currentSearchQuery.toLowerCase());
             
-            let matchesAura = true;
-            const genreNames = item.genres ? item.genres.map(g => g.name.toLowerCase()) : [];
+            const matchesCategory = currentCategory === 'all' || item.media_category === currentCategory;
 
-            if (currentAura === 'high-energy') {
-                matchesAura = genreNames.some(g => ['action', 'adventure', 'shounen', 'sports', 'sci-fi', 'fantasy'].includes(g)) || item.score >= 8.3;
-            } else if (currentAura === 'melancholy') {
-                matchesAura = genreNames.some(g => ['drama', 'psychological', 'mystery', 'romance', 'supernatural', 'suspense', 'horror', 'thriller'].includes(g));
-            } else if (currentAura === 'binge-mode') {
-                matchesAura = (typeof item.episodes === 'number' && item.episodes >= 24) || item.media_category === 'Manga' || genreNames.includes('adventure') || genreNames.includes('fantasy');
-            }
+            const matchesGenre = currentGenre === 'all' || (item.genres || []).some(g => g.name === currentGenre);
 
-            return matchesSearch && matchesAura;
+            return matchesSearch && matchesCategory && matchesGenre;
         });
 
         // Handle Empty State
@@ -231,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const genresStr = (item.genres && item.genres.length > 0) ? item.genres.map(g => g.name).slice(0, 2).join(', ') : 'Hiburan';
             const synopsis = item.synopsis ? item.synopsis.substring(0, 95) + '...' : 'Tidak ada sinopsis tersedia.';
             
-            const badgeColor = mediaType === 'Manga' ? 'bg-purple-600/90' : 'bg-red-600/90';
+            const badgeColor = mediaType === 'Manga' ? 'bg-purple-600/90' : (mediaType === 'Drama' ? 'bg-blue-600/90' : 'bg-red-600/90');
 
             return `
                 <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-lg hover:border-red-600/60 hover:shadow-red-600/20 transition-all duration-300 flex flex-col group">
@@ -284,6 +226,38 @@ document.addEventListener('DOMContentLoaded', () => {
      * --- 5. EVENT HANDLERS ---
      */
 
+    // Genre Filter: chip dibangun dari genre yang ada pada kategori aktif (maks. 6 genre terbanyak)
+    function renderGenres() {
+        if (!genreContainer) return;
+        const counts = {};
+        allMediaData
+            .filter(item => currentCategory === 'all' || item.media_category === currentCategory)
+            .forEach(item => (item.genres || []).forEach(g => { counts[g.name] = (counts[g.name] || 0) + 1; }));
+        const genres = Object.keys(counts)
+            .sort((a, b) => counts[b] - counts[a] || a.localeCompare(b))
+            .slice(0, 6);
+        if (currentGenre !== 'all' && !genres.includes(currentGenre)) currentGenre = 'all';
+
+        genreContainer.innerHTML = ['all', ...genres].map(g => {
+            const active = g === currentGenre;
+            const cls = active
+                ? 'font-bold bg-red-600 text-white shadow-lg shadow-red-600/30'
+                : 'font-semibold bg-zinc-950 hover:bg-zinc-800 text-zinc-300 border border-zinc-700/80';
+            return `<button type="button" data-genre="${g}" class="genre-btn px-4 py-2 rounded-xl text-xs sm:text-sm transition-all cursor-pointer hover:scale-105 active:scale-95 ${cls}">${g === 'all' ? 'Semua' : g}</button>`;
+        }).join('');
+    }
+
+    // Event Handling: klik chip genre (event delegation)
+    if (genreContainer) {
+        genreContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('.genre-btn');
+            if (!btn) return;
+            currentGenre = btn.getAttribute('data-genre');
+            renderGenres();
+            renderVibeGrid();
+        });
+    }
+
     // Event Handling 1: Unified Search Real-time Input
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -292,11 +266,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Event Handling 2: Aura-Based Discovery Click Buttons (.forEach array method)
+    // Event Handling 2: Category Filter Click Buttons (.forEach array method)
     auraBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            // Reset style untuk semua tombol aura
+            // Reset style untuk semua tombol kategori
             auraBtns.forEach(b => {
                 b.classList.remove('bg-red-600', 'text-white', 'shadow-lg', 'shadow-red-600/30', 'font-bold');
                 b.classList.add('bg-zinc-950', 'text-zinc-300', 'font-semibold');
@@ -305,8 +279,10 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.remove('bg-zinc-950', 'text-zinc-300', 'font-semibold');
             btn.classList.add('bg-red-600', 'text-white', 'shadow-lg', 'shadow-red-600/30', 'font-bold');
 
-            // Set current aura dan render ulang grid
-            currentAura = btn.getAttribute('data-aura');
+            // Set kategori aktif dan render ulang grid
+            currentCategory = btn.getAttribute('data-category');
+            currentGenre = 'all';
+            renderGenres();
             renderVibeGrid();
         });
     });
